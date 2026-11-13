@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>FOUND IT - Lost and Found</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #080817;
+    color: white;
+}
+
+/* INTRO PAGE */
+
+#intro {
+    height: 100vh;
+    background: linear-gradient(135deg,#080817,#32105c,#102c68);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.logo {
+    font-size: 70px;
+    color: #a78bfa;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px #7437dc;
+        transform: scale(1);
+    }
+    to {
+        text-shadow: 0 0 35px #398bff;
+        transform: scale(1.1);
+    }
+}
+
+#intro h1 {
+    font-size: 48px;
+    letter-spacing: 6px;
+    margin: 15px;
+}
+
+#intro p {
+    color: #d2c9ff;
+    margin: 10px;
+}
+
+/* BUTTONS */
+
+button {
+    background: linear-gradient(90deg,#7437dc,#2779ec);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    margin: 8px 4px;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 18px #7547dd;
+}
+
+/* NAVBAR */
+
+header {
+    background: #101024;
+    padding: 18px 4%;
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #44336e;
+}
+
+header h2 {
+    color: #a78bfa;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+nav button {
+    background: transparent;
+    padding: 8px;
+    color: white;
+}
+
+/* PAGES */
+
+.page {
+    display: none;
+    min-height: 85vh;
+    padding: 45px 7%;
+}
+
+.page.active {
+    display: block;
+}
+
+.hero {
+    text-align: center;
+    padding: 90px 15px;
+    background: linear-gradient(120deg,#17113c,#111f50);
+    border-radius: 20px;
+}
+
+.hero h1 {
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.hero span {
+    color: #a78bfa;
+}
+
+.hero p {
+    color: #c7c4e9;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    color: #a78bfa;
+    margin-bottom: 25px;
+}
+
+/* CARDS */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.card {
+    background: #15152d;
+    padding: 25px;
+    border: 1px solid #38305f;
+    border-radius: 15px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+    border-color: #8b5cf6;
+}
+
+.card h3 {
+    color: #b7a2ff;
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: #bbb9d3;
+    line-height: 1.7;
+    margin: 10px 0;
+}
+
+.icon {
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+/* FORMS */
+
+.form-box {
+    max-width: 520px;
+    margin: auto;
+    background: #15152d;
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid #44336e;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 13px;
+    margin: 10px 0 18px;
+    border: 1px solid #51417a;
+    border-radius: 7px;
+    background: #09091b;
+    color: white;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: 1px solid #8b5cf6;
+}
+
+label {
+    color: #d4c9ff;
+}
+
+textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+/* FOOTER */
+
+footer {
+    background: #101024;
+    text-align: center;
+    padding: 25px;
+    color: #aaa;
+    border-top: 1px solid #39305b;
+}
+
+/* MOBILE */
+
+@media(max-width:600px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav {
+        justify-content: center;
+    }
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .page {
+        padding: 25px 5%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 1. INTRO PAGE -->
+
+<section id="intro">
+
+    <div class="logo">⌕</div>
+
+    <h1>FOUND IT</h1>
+
+    <p>LOST • FOUND • REUNITED</p>
+
+    <p>Lost Something? Find It Here!</p>
+
+    <button onclick="showPage('home')">
+        GET STARTED →
+    </button>
+
+</section>
+
+<!-- NAVIGATION BAR -->
+
+<header id="navbar">
+
+    <h2>⌕ FOUND IT</h2>
+
+    <nav>
+        <button onclick="showPage('home')">Home</button>
+        <button onclick="showPage('about')">About</button>
+        <button onclick="showPage('browse')">Browse</button>
+        <button onclick="showPage('lost')">Lost Report</button>
+        <button onclick="showPage('found')">Found Report</button>
+        <button onclick="showPage('dashboard')">Dashboard</button>
+        <button onclick="showPage('login')">Login</button>
+        <button onclick="showPage('register')">Register</button>
+    </nav>
+
+</header>
+
+<!-- 2. HOME PAGE -->
+
+<section id="home" class="page">
+
+    <div class="hero">
+
+        <h1>Welcome to <span>FOUND IT</span></h1>
+
+        <p>
+        A smart and simple platform to report lost items,
+        find missing belongings and reunite people with
+        their valuable things.
+        </p>
+
+        <button onclick="showPage('lost')">
+            Report Lost Item
+        </button>
+
+        <button onclick="showPage('found')">
+            Report Found Item
+        </button>
+
+        <button onclick="showPage('browse')">
+            Explore Items
+        </button>
+
+    </div>
+
+    <h2 class="section-title" style="margin-top:45px">
+        What Can You Do?
+    </h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="icon">🔍</div>
+            <h3>Find Items</h3>
+            <p>Explore the available lost and found reports.</p>
+            <button onclick="showPage('browse')">Explore</button>
+        </div>
+
+        <div class="card">
+            <div class="icon">📢</div>
+            <h3>Report Lost</h3>
+            <p>Report your missing belongings easily.</p>
+            <button onclick="showPage('lost')">Report Now</button>
+        </div>
+
+        <div class="card">
+            <div class="icon">🤝</div>
+            <h3>Report Found</h3>
+            <p>Help someone recover their missing belongings.</p>
+            <button onclick="showPage('found')">Help Someone</button>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- 3. ABOUT PAGE -->
+
+<section id="about" class="page">
+
+    <h2 class="section-title">About FOUND IT</h2>
+
+    <div class="card">
+
+        <h3>Our Mission</h3>
+
+        <p>
+        FOUND IT is a lost and found management website
+        designed to make finding missing belongings easier.
+        It connects people who have lost items with people
+        who have found them.
+        </p>
+
+        <h3>Our Vision</h3>
+
+        <p>
+        To create a helpful community where every lost
+        belonging has a chance to be reunited with its owner.
+        </p>
+
+        <h3>Why Choose Us?</h3>
+
+        <p>
+        Easy reporting, organized item details and
+        a user-friendly website experience.
+        </p>
+
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="icon">⚡</div>
+            <h3>Easy to Use</h3>
+            <p>Simple and user-friendly design.</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🔐</div>
+            <h3>Privacy</h3>
+            <p>Designed to keep personal information private in public listings.</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">💙</div>
+            <h3>Community</h3>
+            <p>Helping people recover their belongings.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- 4. LOGIN PAGE -->
+
+<section id="login" class="page">
+
+    <div class="form-box">
+
+        <h2 class="section-title">Welcome Back!</h2>
+
+        <form onsubmit="loginUser(event)">
+
+            <label>Email Address</label>
+            <input type="email" id="loginEmail" required>
+
+            <label>Password</label>
+            <input type="password" id="loginPassword" required>
+
+            <button type="submit">Login</button>
+
+        </form>
+
+        <p>New User?</p>
+
+        <button onclick="showPage('register')">
+            Create Account
+        </button>
+
+    </div>
+
+</section>
+
+<!-- 5. REGISTER PAGE -->
+
+<section id="register" class="page">
+
+    <div class="form-box">
+
+        <h2 class="section-title">Create Your Account</h2>
+
+        <form onsubmit="registerUser(event)">
+
+            <label>Full Name</label>
+            <input type="text" id="regName" required>
+
+            <label>Email</label>
+            <input type="email" id="regEmail" required>
+
+            <label>Password</label>
+            <input type="password" id="regPassword"
+            minlength="6" required>
+
+            <label>Phone Number</label>
+            <input type="tel" id="regPhone" required>
+
+            <button type="submit">Register Now</button>
+
+        </form>
+
+    </div>
+
+</section>
+
+<!-- 6. DASHBOARD PAGE -->
+
+<section id="dashboard" class="page">
+
+    <h2 class="section-title">User Dashboard</h2>
+
+    <h3 id="welcomeUser">Welcome!</h3>
+
+    <p>Manage your lost and found activities here.</p>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="icon">📦</div>
+            <h3>Total Reports</h3>
+            <h2 id="totalReports">0</h2>
+        </div>
+
+        <div class="card">
+            <div class="icon">🔎</div>
+            <h3>Lost Reports</h3>
+            <h2 id="lostCount">0</h2>
+        </div>
+
+        <div class="card">
+            <div class="icon">🎁</div>
+            <h3>Found Reports</h3>
+            <h2 id="foundCount">0</h2>
+        </div>
+
+    </div>
+
+    <br>
+
+    <button onclick="showPage('lost')">
+        Report Lost Item
+    </button>
+
+    <button onclick="showPage('found')">
+        Report Found Item
+    </button>
+
+    <button onclick="showPage('reported')">
+        View All Reports
+    </button>
+
+</section>
+
+<!-- 7. LOST ITEM PAGE -->
+
+<section id="lost" class="page">
+
+    <div class="form-box">
+
+        <h2 class="section-title">Report a Lost Item</h2>
+
+        <form onsubmit="submitItem(event,'Lost')">
+
+            <label>Item Name</label>
+            <input id="lostName" placeholder="Example: Wallet" required>
+
+            <label>Category</label>
+
+            <select id="lostCategory">
+                <option>Electronics</option>
+                <option>Books</option>
+                <option>Accessories</option>
+                <option>Documents</option>
+                <option>Others</option>
+            </select>
+
+            <label>Last Seen Location</label>
+            <input id="lostLocation" required>
+
+            <label>Date Lost</label>
+            <input type="date" id="lostDate" required>
+
+            <label>Description</label>
+            <textarea id="lostDescription" required></textarea>
+
+            <button type="submit">
+                Submit Lost Report
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+<!-- 8. FOUND ITEM PAGE -->
+
+<section id="found" class="page">
+
+    <div class="form-box">
+
+        <h2 class="section-title">Report a Found Item</h2>
+
+        <form onsubmit="submitItem(event,'Found')">
+
+            <label>Item Name</label>
+            <input id="foundName" required>
+
+            <label>Category</label>
+
+            <select id="foundCategory">
+                <option>Electronics</option>
+                <option>Books</option>
+                <option>Accessories</option>
+                <option>Documents</option>
+                <option>Others</option>
+            </select>
+
+            <label>Found Location</label>
+            <input id="foundLocation" required>
+
+            <label>Date Found</label>
+            <input type="date" id="foundDate" required>
+
+            <label>Description</label>
+            <textarea id="foundDescription" required></textarea>
+
+            <button type="submit">
+                Submit Found Report
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+<!-- 9. BROWSE ITEMS PAGE -->
+
+<section id="browse" class="page">
+
+    <h2 class="section-title">Browse Lost & Found Items</h2>
+
+    <p>Explore the items reported by users.</p>
+
+    <div class="cards" id="itemList"></div>
+
+</section>
+
+<!-- 10. ITEM DETAILS PAGE -->
+
+<section id="details" class="page">
+
+    <h2 class="section-title">Item Details</h2>
+
+    <div class="card" id="itemDetails">
+        Select an item to view details.
+    </div>
+
+    <button onclick="showPage('browse')">
+        Back to Browse
+    </button>
+
+</section>
+
+<!-- 11. REPORTED ITEMS PAGE -->
+
+<section id="reported" class="page">
+
+    <h2 class="section-title">All Reported Items</h2>
+
+    <p>View the lost and found reports submitted through FOUND IT.</p>
+
+    <div class="cards" id="reportedList"></div>
+
+</section>
+
+<!-- 12. THANK YOU PAGE -->
+
+<section id="thankyou" class="page">
+
+    <div class="hero">
+
+        <div class="logo">✓</div>
+
+        <h1>Thank You!</h1>
+
+        <p>
+        Your submission has been completed successfully.
+        Thank you for using FOUND IT.
+        </p>
+
+        <button onclick="showPage('home')">
+            Back to Home
+        </button>
+
+        <button onclick="showPage('browse')">
+            Browse Items
+        </button>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer id="footer">
+
+    <h3>FOUND IT</h3>
+
+    <p>LOST • FOUND • REUNITED</p>
+
+    <p>© 2026 FOUND IT. All Rights Reserved.</p>
+
+</footer>
+
+<script>
+
+// PAGE NAVIGATION
+
+function showPage(pageId) {
+
+    document.getElementById("intro").style.display = "none";
+
+    document.getElementById("navbar").style.display = "flex";
+
+    document.getElementById("footer").style.display = "block";
+
+    let pages = document.querySelectorAll(".page");
+
+    pages.forEach(function(page) {
+        page.classList.remove("active");
+    });
+
+    document.getElementById(pageId).classList.add("active");
+
+    if(pageId === "dashboard") {
+        updateDashboard();
+    }
+
+    if(pageId === "browse") {
+        displayItems();
+    }
+
+    if(pageId === "reported") {
+        displayReported();
+    }
+
+    window.scrollTo(0,0);
+}
+
+// STORE DATA
+
+let items = JSON.parse(localStorage.getItem("foundItems")) || [];
+
+let user = JSON.parse(localStorage.getItem("foundUser")) || null;
+
+// REGISTER
+
+function registerUser(event) {
+
+    event.preventDefault();
+
+    user = {
+        name: document.getElementById("regName").value,
+        email: document.getElementById("regEmail").value,
+        password: document.getElementById("regPassword").value,
+        phone: document.getElementById("regPhone").value
+    };
+
+    localStorage.setItem("foundUser",JSON.stringify(user));
+
+    alert("Registration Successful!");
+
+    event.target.reset();
+
+    showPage("dashboard");
+}
+
+// LOGIN
+
+function loginUser(event) {
+
+    event.preventDefault();
+
+    let email = document.getElementById("loginEmail").value;
+
+    let password = document.getElementById("loginPassword").value;
+
+    if(user && user.email === email && user.password === password) {
+
+        alert("Login Successful!");
+
+        event.target.reset();
+
+        showPage("dashboard");
+
+    } else {
+
+        alert("Please register first or check your details.");
+
+    }
+}
+
+// SUBMIT LOST AND FOUND ITEMS
+
+function submitItem(event,type) {
+
+    event.preventDefault();
+
+    let name = document.getElementById(
+        type === "Lost" ? "lostName" : "foundName"
+    ).value;
+
+    let category = document.getElementById(
+        type === "Lost" ? "lostCategory" : "foundCategory"
+    ).value;
+
+    let location = document.getElementById(
+        type === "Lost" ? "lostLocation" : "foundLocation"
+    ).value;
+
+    let date = document.getElementById(
+        type === "Lost" ? "lostDate" : "foundDate"
+    ).value;
+
+    let description = document.getElementById(
+        type === "Lost" ? "lostDescription" : "foundDescription"
+    ).value;
+
+    let item = {
+        name: name,
+        category: category,
+        location: location,
+        date: date,
+        description: description,
+        type: type
+    };
+
+    items.push(item);
+
+    localStorage.setItem("foundItems",JSON.stringify(items));
+
+    event.target.reset();
+
+    alert(type + " Item Report Submitted Successfully!");
+
+    showPage("thankyou");
+}
+
+// SAFE DISPLAY TEXT
+
+function escapeHTML(value) {
+
+    return String(value).replace(/[&<>"']/g,function(char) {
+
+        return {
+            "&":"&amp;",
+            "<":"&lt;",
+            ">":"&gt;",
+            '"':"&quot;",
+            "'":"&#39;"
+        }[char];
+
+    });
+}
+
+// DISPLAY BROWSE ITEMS
+
+function displayItems() {
+
+    let list = document.getElementById("itemList");
+
+    list.innerHTML = "";
+
+    if(items.length === 0) {
+
+        list.innerHTML = "<p>No items reported yet.</p>";
+
+        return;
+    }
+
+    items.forEach(function(item,index) {
+
+        list.innerHTML += `
+        <div class="card">
+
+            <div class="icon">📦</div>
+
+            <h3>${escapeHTML(item.name)}</h3>
+
+            <p>Type: ${item.type}</p>
+
+            <p>Category: ${escapeHTML(item.category)}</p>
+
+            <p>Location: ${escapeHTML(item.location)}</p>
+
+            <button onclick="viewDetails(${index})">
+                View Details
+            </button>
+
+        </div>`;
+
+    });
+
+}
+
+// VIEW ITEM DETAILS
+
+function viewDetails(index) {
+
+    let item = items[index];
+
+    document.getElementById("itemDetails").innerHTML = `
+
+        <div class="icon">📦</div>
+
+        <h2>${escapeHTML(item.name)}</h2>
+
+        <p>Type: ${item.type}</p>
+
+        <p>Category: ${escapeHTML(item.category)}</p>
+
+        <p>Location: ${escapeHTML(item.location)}</p>
+
+        <p>Date: ${escapeHTML(item.date)}</p>
+
+        <p>Description: ${escapeHTML(item.description)}</p>
+
+    `;
+
+    showPage("details");
+
+}
+
+// DASHBOARD
+
+function updateDashboard() {
+
+    document.getElementById("totalReports").innerText = items.length;
+
+    document.getElementById("lostCount").innerText =
+        items.filter(item => item.type === "Lost").length;
+
+    document.getElementById("foundCount").innerText =
+        items.filter(item => item.type === "Found").length;
+
+    document.getElementById("welcomeUser").innerText =
+        user ? "Welcome, " + user.name + "!" : "Welcome to FOUND IT!";
+
+}
+
+// DISPLAY ALL REPORTED ITEMS
+
+function displayReported() {
+
+    let list = document.getElementById("reportedList");
+
+    list.innerHTML = "";
+
+    if(items.length === 0) {
+
+        list.innerHTML = "<p>No reports available.</p>";
+
+        return;
+    }
+
+    items.forEach(function(item) {
+
+        list.innerHTML += `
+
+        <div class="card">
+
+            <div class="icon">📦</div>
+
+            <h3>${escapeHTML(item.name)}</h3>
+
+            <p>${item.type} Item</p>
+
+            <p>Category: ${escapeHTML(item.category)}</p>
+
+            <p>Location: ${escapeHTML(item.location)}</p>
+
+        </div>`;
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
